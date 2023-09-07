@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Merchant>
-
+@{
+    var currentU = ViewData["user"];
+}
 <h1>Merchants</h1>
 <a href="/merchants/new">Add a Merchant</a>
 

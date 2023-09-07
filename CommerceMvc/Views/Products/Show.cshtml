@@ -1,5 +1,7 @@
 ﻿@model Product
-
+@{
+    var currentU = ViewData["user"];
+}
 <h2>@Model.Name</h2>
 <p>@Model.Description</p>
 

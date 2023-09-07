@@ -6,12 +6,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<CommerceMvcContext>(options =>
-    options
-        .UseNpgsql(builder.Configuration.GetConnectionString("CommerceMvcDb"))
-        .UseSnakeCaseNamingConvention()
-
-    );
+builder.Services.AddDbContext<CommerceMvcContext>(
+    options =>
+        options
+            .UseNpgsql(
+                builder.Configuration["CommerceMVC_DBConnectionString"]
+                    ?? throw new InvalidOperationException(
+                        "Connection string 'MvcMessageLoggerDb' not found."
+                    )
+            )
+            .UseSnakeCaseNamingConvention()
+);
 
 var app = builder.Build();
 
